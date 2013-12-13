@@ -45,13 +45,13 @@ specified value. ( see get() )
 """
         
         closest_point = None
-        for (xi, yi) in self.data:
+        for xi in self.data.keys():
             if closest_point is None:
-                closest_point = (xi, yi)
+                closest_point = (xi, self.data[xi]) # = (xi, yi)
             else:
                 cx, cy = closest_point
                 if abs(xi-x) < abs(cx-x):
-                    closest_point = (xi, yi)
+                    closest_point = (xi, self.data[xi])
         return closest_point[1]
         
 
