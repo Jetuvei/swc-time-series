@@ -18,14 +18,10 @@ y values.
     def get(self, x):
         """Input: x
 Output: y
-where (x,y) exists in the data
+where x:y exists in the data dicitonary
 """
-        for xi in self.data.keys():
-            if xi == x:
-                return self.data[xi] # = yi
-        
-        raise Exception("Didn't find the value")
-    
+	return self.data[x]
+	    
     def view(self):
         """Not implemented yet!
 """
