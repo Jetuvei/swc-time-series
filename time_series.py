@@ -20,9 +20,9 @@ y values.
 Output: y
 where (x,y) exists in the data
 """
-        for (xi,yi) in self.data:
+        for xi in self.data.keys():
             if xi == x:
-                return yi
+                return self.data[xi] # = yi
         
         raise Exception("Didn't find the value")
     
