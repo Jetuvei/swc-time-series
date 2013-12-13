@@ -69,22 +69,30 @@ class LinearTimeSeries(TimeSeries):
 to a point specified by x. Returns the y value 
 corresponding to this x. (x,y)
 """
-        # if it's out of range to the left,
+ 
+	# first need sorted x values
+	sorted_x = self.data.keys()
+	sorted_x.sort()
+
+	# if it's out of range to the left,
         # return the first value
-        if x < self.data[0][0]:
-            return self.data[0][1]
+        if x < sorted_x[0]:
+            return self.data[0]
         # if it's out of range to the right,
         # return the last value
-        elif x > self.data[-1][0]:
-            return self.data[-1][1]
+        elif x > sorted_x[-1]:
+            return self.data[-1]
         # otherwise, it's within the range
-        for (n, (xi, yi)) in enumerate(self.data):
+        for n, xi in enumerate(sorted_x):
             if xi == x:
                 return yi
-            elif xi > x:
+            elif xi > x and sorted_x[n-1] < x:
+
                 n1, n2 = n-1, n
-                x1, x2 = self.data[n1][0], self.data[n2][0]
-                y1, y2 = self.data[n1][1], self.data[n2][1]
+
+		x1, x2 = sorted_x[n-1], xi
+
+                y1, y2 = self.data[x1], self.data[x2][1]
                 d1, d2 = abs(x-x1), abs(x-x2)
                 total_weight = float(d1 + d2)
                 w1 = y1 * (total_weight-d1) / total_weight
