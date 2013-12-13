@@ -6,8 +6,8 @@ December 2013.
 """
 
 class TimeSeries(object):
-    """TimeSeries object contains a list of tuples (x,y), 
-such that they are ordered in their x values.
+    """TimeSeries object contains a dictionary x keys and 
+y values.
 """
 
     def __init__(self, data):
