@@ -1,3 +1,5 @@
+#I have totally helped in making this code
+
 """Module containing TimeSeries and derived objects, as created
 for the Glasgow SUPA Software Carpentry course on 12th and 13th 
 December 2013.
