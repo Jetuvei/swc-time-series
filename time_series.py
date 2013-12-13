@@ -39,6 +39,7 @@ specified value. ( see get() )
         
         Uses step interpolation (gets the Y value of the nearest X point)
 """
+	# maybe should have used {}.items
         
         closest_point = None
         for xi in self.data.keys():
