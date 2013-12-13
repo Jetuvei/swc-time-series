@@ -1,9 +1,23 @@
+"""Module containing TimeSeries and derived objects, as created
+for the Glasgow SUPA Software Carpentry course on 12th and 13th 
+December 2013.
+"""
 
 class TimeSeries(object):
+    """TimeSeries object contains a list of tuples (x,y), 
+such that they are ordered in their x values.
+"""
+
     def __init__(self, data):
+        """Initialise TimeSeries object
+"""
         self.data = data
     
     def get(self, x):
+        """Input: x
+Output: y
+where (x,y) exists in the data
+"""
         for (xi,yi) in self.data:
             if xi == x:
                 return yi
@@ -11,14 +25,22 @@ class TimeSeries(object):
         raise Exception("Didn't find the value")
     
     def view(self):
+        """Not implemented yet!
+"""
         pass
     
 
 class StepFunctionTimeSeries(TimeSeries):
+    """This time series object allows you to find
+the nearest point in the data to the 
+specified value. ( see get() )
+"""
+
     def get(self, x):
-        '''Given an X value, get the corresponding Y value.
+        """Given an X value, get the corresponding Y value.
         
-        Uses step interpolation (gets the Y value of the nearest X point)'''
+        Uses step interpolation (gets the Y value of the nearest X point)
+"""
         
         closest_point = None
         for (xi, yi) in self.data:
@@ -33,11 +55,18 @@ class StepFunctionTimeSeries(TimeSeries):
 
 
 class LinearTimeSeries(TimeSeries):
+
     def __init__(self, data):
+        """Initialise LinearTimeSeries object
+"""
         TimeSeries.__init__(self, data)
         self.data.sort()
     
     def get(self, x):
+        """Linearly interpolate between points (x1,y1) and (x2,y2) 
+to a point specified by x. Returns the y value 
+corresponding to this x. (x,y)
+"""
         # if it's out of range to the left,
         # return the first value
         if x < self.data[0][0]:
